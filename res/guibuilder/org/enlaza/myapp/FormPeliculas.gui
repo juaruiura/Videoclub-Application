@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <component type="Form" layout="LayeredLayout" layeredLayoutPreferredWidthMM="0.0" layeredLayoutPreferredHeightMM="0.0"  autolayout="true" title="Películas" name="FormPeliculas">
-  <component type="Button" text="Listar películas" name="Button" actionEvent="true">
-    <layoutConstraint insets="9.259259mm auto auto 36.27204%" referenceComponents="-1 -1 -1 -1" referencePositions="0.0 0.0 0.0 0.0" />
+  <component type="Label" text="Título:" name="Label">
+    <layoutConstraint insets="11.275626% auto auto 34.5667%" referenceComponents="-1 -1 -1 -1" referencePositions="0.0 0.0 0.0 0.0" />
+  </component>
+  <component type="TextField" name="tituloTextField">
+    <layoutConstraint insets="15.3758545% auto auto 27.361246%" referenceComponents="-1 -1 -1 -1" referencePositions="0.0 0.0 0.0 0.0" />
+  </component>
+  <component type="Label" text="Género:" name="Label_1">
+    <layoutConstraint insets="20.95672% auto auto 34.46933%" referenceComponents="-1 -1 -1 -1" referencePositions="0.0 0.0 0.0 0.0" />
+  </component>
+  <component type="TextField" name="generoTextField">
+    <layoutConstraint insets="26.65148% auto auto 25.413826%" referenceComponents="-1 -1 -1 -1" referencePositions="0.0 0.0 0.0 0.0" />
+  </component>
+  <component type="Button" text="Dar de alta" name="ButtonAlta" actionEvent="true">
+    <layoutConstraint insets="34.05467% auto auto 33.398247%" referenceComponents="-1 -1 -1 -1" referencePositions="0.0 0.0 0.0 0.0" />
+  </component>
+  <component type="Button" text="Listar películas" name="ButtonListar" actionEvent="true">
+    <layoutConstraint insets="39.407745% auto auto 33.8851%" referenceComponents="-1 -1 -1 -1" referencePositions="0.0 0.0 0.0 0.0" />
   </component>
 </component>

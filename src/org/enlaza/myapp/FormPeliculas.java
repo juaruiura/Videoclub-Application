@@ -22,8 +22,10 @@ import static com.codename1.ui.layouts.BoxLayout.Y_AXIS;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.util.Hashtable;
 import java.util.Map;
+import org.json.simple.JSONObject;
 
 /**
  * GUI builder created Form
@@ -45,13 +47,19 @@ public class FormPeliculas extends com.codename1.ui.Form {
     }
 
 //-- DON'T EDIT BELOW THIS LINE!!!
-    private com.codename1.ui.Button gui_Button = new com.codename1.ui.Button();
+    private com.codename1.ui.Label gui_Label = new com.codename1.ui.Label();
+    private com.codename1.ui.TextField gui_tituloTextField = new com.codename1.ui.TextField();
+    private com.codename1.ui.Label gui_Label_1 = new com.codename1.ui.Label();
+    private com.codename1.ui.TextField gui_generoTextField = new com.codename1.ui.TextField();
+    private com.codename1.ui.Button gui_ButtonAlta = new com.codename1.ui.Button();
+    private com.codename1.ui.Button gui_ButtonListar = new com.codename1.ui.Button();
 
 
 // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void guiBuilderBindComponentListeners() {
         EventCallbackClass callback = new EventCallbackClass();
-        gui_Button.addActionListener(callback);
+        gui_ButtonAlta.addActionListener(callback);
+        gui_ButtonListar.addActionListener(callback);
     }
 
     class EventCallbackClass implements com.codename1.ui.events.ActionListener, com.codename1.ui.events.DataChangedListener {
@@ -70,8 +78,11 @@ public class FormPeliculas extends com.codename1.ui.Form {
                 sourceComponent = sourceComponent.getParent().getLeadParent();
             }
 
-            if(sourceComponent == gui_Button) {
-                onButtonActionEvent(ev);
+            if(sourceComponent == gui_ButtonAlta) {
+                onButtonAltaActionEvent(ev);
+            }
+            if(sourceComponent == gui_ButtonListar) {
+                onButtonListarActionEvent(ev);
             }
         }
 
@@ -85,11 +96,34 @@ public class FormPeliculas extends com.codename1.ui.Form {
                 setInlineStylesTheme(resourceObjectInstance);
         setTitle("Pel\u00EDculas");
         setName("FormPeliculas");
-        addComponent(gui_Button);
-        gui_Button.setText("Listar pel\u00EDculas");
-                gui_Button.setInlineStylesTheme(resourceObjectInstance);
-        gui_Button.setName("Button");
-        ((com.codename1.ui.layouts.LayeredLayout)gui_Button.getParent().getLayout()).setInsets(gui_Button, "9.259259mm auto auto 36.27204%").setReferenceComponents(gui_Button, "-1 -1 -1 -1").setReferencePositions(gui_Button, "0.0 0.0 0.0 0.0");
+        addComponent(gui_Label);
+        addComponent(gui_tituloTextField);
+        addComponent(gui_Label_1);
+        addComponent(gui_generoTextField);
+        addComponent(gui_ButtonAlta);
+        addComponent(gui_ButtonListar);
+        gui_Label.setText("T\u00EDtulo:");
+                gui_Label.setInlineStylesTheme(resourceObjectInstance);
+        gui_Label.setName("Label");
+        ((com.codename1.ui.layouts.LayeredLayout)gui_Label.getParent().getLayout()).setInsets(gui_Label, "11.275626% auto auto 34.5667%").setReferenceComponents(gui_Label, "-1 -1 -1 -1").setReferencePositions(gui_Label, "0.0 0.0 0.0 0.0");
+                gui_tituloTextField.setInlineStylesTheme(resourceObjectInstance);
+        gui_tituloTextField.setName("tituloTextField");
+        ((com.codename1.ui.layouts.LayeredLayout)gui_tituloTextField.getParent().getLayout()).setInsets(gui_tituloTextField, "15.3758545% auto auto 27.361246%").setReferenceComponents(gui_tituloTextField, "-1 -1 -1 -1").setReferencePositions(gui_tituloTextField, "0.0 0.0 0.0 0.0");
+        gui_Label_1.setText("G\u00E9nero:");
+                gui_Label_1.setInlineStylesTheme(resourceObjectInstance);
+        gui_Label_1.setName("Label_1");
+        ((com.codename1.ui.layouts.LayeredLayout)gui_Label_1.getParent().getLayout()).setInsets(gui_Label_1, "20.95672% auto auto 34.46933%").setReferenceComponents(gui_Label_1, "-1 -1 -1 -1").setReferencePositions(gui_Label_1, "0.0 0.0 0.0 0.0");
+                gui_generoTextField.setInlineStylesTheme(resourceObjectInstance);
+        gui_generoTextField.setName("generoTextField");
+        ((com.codename1.ui.layouts.LayeredLayout)gui_generoTextField.getParent().getLayout()).setInsets(gui_generoTextField, "26.65148% auto auto 25.413826%").setReferenceComponents(gui_generoTextField, "-1 -1 -1 -1").setReferencePositions(gui_generoTextField, "0.0 0.0 0.0 0.0");
+        gui_ButtonAlta.setText("Dar de alta");
+                gui_ButtonAlta.setInlineStylesTheme(resourceObjectInstance);
+        gui_ButtonAlta.setName("ButtonAlta");
+        ((com.codename1.ui.layouts.LayeredLayout)gui_ButtonAlta.getParent().getLayout()).setInsets(gui_ButtonAlta, "34.05467% auto auto 33.398247%").setReferenceComponents(gui_ButtonAlta, "-1 -1 -1 -1").setReferencePositions(gui_ButtonAlta, "0.0 0.0 0.0 0.0");
+        gui_ButtonListar.setText("Listar pel\u00EDculas");
+                gui_ButtonListar.setInlineStylesTheme(resourceObjectInstance);
+        gui_ButtonListar.setName("ButtonListar");
+        ((com.codename1.ui.layouts.LayeredLayout)gui_ButtonListar.getParent().getLayout()).setInsets(gui_ButtonListar, "39.407745% auto auto 33.8851%").setReferenceComponents(gui_ButtonListar, "-1 -1 -1 -1").setReferencePositions(gui_ButtonListar, "0.0 0.0 0.0 0.0");
     }// </editor-fold>
 
 //-- DON'T EDIT ABOVE THIS LINE!!!
@@ -99,10 +133,17 @@ public class FormPeliculas extends com.codename1.ui.Form {
             Map<String, Object> data;
             @Override
             protected void postResponse() {
-//                super.postResponse(); //To change body of generated methods, choose Tools | Templates.
                 listPeliculas.removeAll();
                 c.getComponentForm().revalidate();
                 java.util.List<Map<String, Object>> content = (java.util.List<Map<String, Object>>)data.get("root");
+                Button hideListPeliculas = new Button("Esconder listado");
+                hideListPeliculas.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent ev) {
+                        listPeliculas.removeAll();
+                        c.getComponentForm().revalidate();
+                    }
+                });
+                listPeliculas.addComponent(hideListPeliculas);
                 for(Map<String, Object> obj : content) {
                     String titulo = (String)obj.get("titulo");
                     String genero = (String)obj.get("genero");
@@ -113,14 +154,6 @@ public class FormPeliculas extends com.codename1.ui.Form {
                     listPeliculas.addComponent(new Label("Género: " + genero));
                     listPeliculas.addComponent(row);
                 }
-                Button hideListPeliculas = new Button("Esconder listado");
-                hideListPeliculas.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent ev) {
-                        listPeliculas.removeAll();
-                        c.getComponentForm().revalidate();
-                    }
-                });
-                listPeliculas.addComponent(hideListPeliculas);
                 if(c.getComponentForm().contains(listPeliculas)==false)
                     c.getComponentForm().addComponent(listPeliculas);
                 c.getComponentForm().revalidate();
@@ -128,7 +161,6 @@ public class FormPeliculas extends com.codename1.ui.Form {
 
             @Override
             protected void readResponse(InputStream input) throws IOException {
-//                super.readResponse(input); //To change body of generated methods, choose Tools | Templates.
                 JSONParser p = new JSONParser();
                 data = p.parseJSON(new InputStreamReader(input));
             }
@@ -143,8 +175,36 @@ public class FormPeliculas extends com.codename1.ui.Form {
         NetworkManager.getInstance().addToQueue(r);
     }
     
-    public void onButtonActionEvent(com.codename1.ui.events.ActionEvent ev) {
+    public void enviarDatos(Component c){
+        ConnectionRequest r = new ConnectionRequest(){
+            JSONObject json = new JSONObject();
+
+            protected void buildRequestBody(OutputStream os) throws IOException {
+                json.put("titulo", gui_tituloTextField.getText());
+                json.put("genero", gui_generoTextField.getText());
+                os.write(json.toString().getBytes("UTF-8"));
+            }
+            
+            @Override
+            protected void readResponse(InputStream input) throws IOException {
+                
+            }
+        };
+        r.setUrl("http://localhost:8080/Videoclub/webresources/pelicula/post");
+        r.setPost(true);
+        r.setContentType("application/json");
+        InfiniteProgress prog = new InfiniteProgress();
+        Dialog diag = prog.showInifiniteBlocking();
+        r.setDisposeOnCompletion(diag);
+        NetworkManager.getInstance().addToQueue(r);
+    }
+    
+    public void onButtonListarActionEvent(com.codename1.ui.events.ActionEvent ev) {
         mostrarDatos(ev.getComponent());
+    }
+
+    public void onButtonAltaActionEvent(com.codename1.ui.events.ActionEvent ev) {
+        enviarDatos(ev.getComponent());
     }
 
 }
