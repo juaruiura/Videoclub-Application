@@ -113,6 +113,14 @@ public class FormPeliculas extends com.codename1.ui.Form {
                     listPeliculas.addComponent(new Label("Género: " + genero));
                     listPeliculas.addComponent(row);
                 }
+                Button hideListPeliculas = new Button("Esconder listado");
+                hideListPeliculas.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent ev) {
+                        listPeliculas.removeAll();
+                        c.getComponentForm().revalidate();
+                    }
+                });
+                listPeliculas.addComponent(hideListPeliculas);
                 if(c.getComponentForm().contains(listPeliculas)==false)
                     c.getComponentForm().addComponent(listPeliculas);
                 c.getComponentForm().revalidate();
