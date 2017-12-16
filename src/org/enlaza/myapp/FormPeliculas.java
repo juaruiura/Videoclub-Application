@@ -148,7 +148,13 @@ public class FormPeliculas extends com.codename1.ui.Form {
                     String titulo = (String)obj.get("titulo");
                     String genero = (String)obj.get("genero");
                     Container row = new Container(new BoxLayout(X_AXIS));
-                    row.addComponent(new Button("Borrar"));
+                    Button buttonBorrar = new Button("Borrar");
+                    buttonBorrar.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent ev) {
+                            borrarDatos(ev.getComponent(), titulo);
+                        }
+                    });
+                    row.addComponent(buttonBorrar);
                     row.addComponent(new Button("Editar"));
                     listPeliculas.addComponent(new Label(titulo));
                     listPeliculas.addComponent(new Label("Género: " + genero));
@@ -193,6 +199,19 @@ public class FormPeliculas extends com.codename1.ui.Form {
         r.setUrl("http://localhost:8080/Videoclub/webresources/pelicula/post");
         r.setPost(true);
         r.setContentType("application/json");
+        InfiniteProgress prog = new InfiniteProgress();
+        Dialog diag = prog.showInifiniteBlocking();
+        r.setDisposeOnCompletion(diag);
+        NetworkManager.getInstance().addToQueue(r);
+    }
+    
+    public void borrarDatos(Component c, String id){
+        ConnectionRequest r = new ConnectionRequest(){
+        };
+        r.setUrl("http://localhost:8080/Videoclub/webresources/pelicula/delete/"+id);
+        r.setPost(false);
+        r.setHttpMethod("DELETE");
+        r.addArgument("q", "@codename-one");
         InfiniteProgress prog = new InfiniteProgress();
         Dialog diag = prog.showInifiniteBlocking();
         r.setDisposeOnCompletion(diag);
