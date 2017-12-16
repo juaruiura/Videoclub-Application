@@ -36,35 +36,8 @@ public class MyApplication {
             current.show();
             return;
         }
-        Form hi = new Form(BoxLayout.y());
-        
-        Container rowBotonera = new Container(BoxLayout.x());
-        Container rowPeliculas = new Container(BoxLayout.x());
-        Container peliculaFirst = new Container(BoxLayout.y());
-        Container peliculaSecond = new Container(BoxLayout.y());
-        Button buttonAdministracion = new Button("Administración");
-        Button buttonClientes = new Button("Clientes");
-        Button buttonPeliculas = new Button("Películas");
-        Button buttonAlquileres = new Button("Alquileres");
-        Label mulan = new Label(theme.getImage("mulan.jpg"));
-        Label labelMulan = new Label("Mulán");
-        Label thor = new Label(theme.getImage("thor.jpg"));
-        Label labelThor = new Label("Thor");
-        
-        rowBotonera.add(buttonClientes);
-        rowBotonera.add(buttonPeliculas);
-        rowBotonera.add(buttonAlquileres);
-        peliculaFirst.add(mulan);
-        peliculaFirst.add(labelMulan);
-        peliculaSecond.add(thor);
-        peliculaSecond.add(labelThor);
-        rowPeliculas.add(peliculaFirst);
-        rowPeliculas.add(peliculaSecond);
-        hi.add(buttonAdministracion);
-        hi.add(rowBotonera);
-        hi.add(rowPeliculas);
-        
-        hi.show();
+        Form peliculas = new FormPeliculas();
+        peliculas.show();
     }
 
     public void stop() {
