@@ -36,8 +36,8 @@ public class MyApplication {
             current.show();
             return;
         }
-        Form peliculas = new FormPeliculas();
-        peliculas.show();
+        Form mainScreen = new FormLogin();
+        mainScreen.show();
     }
 
     public void stop() {

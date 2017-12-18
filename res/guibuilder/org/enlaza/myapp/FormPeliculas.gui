@@ -1,22 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<component type="Form" layout="LayeredLayout" layeredLayoutPreferredWidthMM="0.0" layeredLayoutPreferredHeightMM="0.0"  autolayout="true" title="Películas" name="FormPeliculas">
+<component type="Form" layout="LayeredLayout" layeredLayoutPreferredWidthMM="0.0" layeredLayoutPreferredHeightMM="0.0"  autolayout="true" title="Videoclub" name="FormPeliculas">
   <component type="Label" text="Título:" name="Label">
-    <layoutConstraint insets="11.275626% auto auto 34.5667%" referenceComponents="-1 -1 -1 -1" referencePositions="0.0 0.0 0.0 0.0" />
+    <layoutConstraint insets="3.7037036mm auto auto 31.034483%" referenceComponents="-1 -1 -1 -1" referencePositions="0.0 0.0 0.0 0.0" />
   </component>
   <component type="TextField" name="tituloTextField">
-    <layoutConstraint insets="15.3758545% auto auto 27.361246%" referenceComponents="-1 -1 -1 -1" referencePositions="0.0 0.0 0.0 0.0" />
+    <layoutConstraint insets="6.9970846% auto auto 21.521997%" referenceComponents="-1 -1 -1 -1" referencePositions="0.0 0.0 0.0 0.0" />
   </component>
   <component type="Label" text="Género:" name="Label_1">
-    <layoutConstraint insets="20.95672% auto auto 34.46933%" referenceComponents="-1 -1 -1 -1" referencePositions="0.0 0.0 0.0 0.0" />
+    <layoutConstraint insets="14.285714% auto auto 31.74792%" referenceComponents="-1 -1 -1 -1" referencePositions="0.0 0.0 0.0 0.0" />
   </component>
   <component type="TextField" name="generoTextField">
-    <layoutConstraint insets="26.65148% auto auto 25.413826%" referenceComponents="-1 -1 -1 -1" referencePositions="0.0 0.0 0.0 0.0" />
+    <layoutConstraint insets="18.075802% auto auto 21.521996%" referenceComponents="-1 -1 -1 -1" referencePositions="0.0 0.0 0.0 0.0" />
+  </component>
+  <component type="Label" text="Sinopsis:" name="Label_2">
+    <layoutConstraint insets="24.489796% auto auto 30.79667%" referenceComponents="-1 -1 -1 -1" referencePositions="0.0 0.0 0.0 0.0" />
+  </component>
+  <component type="TextField" name="sinopsisTextField">
+    <layoutConstraint insets="28.279882% auto auto 21.403091%" referenceComponents="-1 -1 -1 -1" referencePositions="0.0 0.0 0.0 0.0" />
+  </component>
+  <component type="Label" text="Duración:" name="Label_3">
+    <layoutConstraint insets="33.67347% auto auto 31.034483%" referenceComponents="-1 -1 -1 -1" referencePositions="0.0 0.0 0.0 0.0" />
+  </component>
+  <component type="TextField" name="duracionTextField">
+    <layoutConstraint insets="38.338192% auto auto 20.808561%" referenceComponents="-1 -1 -1 -1" referencePositions="0.0 0.0 0.0 0.0" />
+  </component>
+  <component type="Label" text="Stock:" name="Label_4">
+    <layoutConstraint insets="44.023323% auto auto 31.74792%" referenceComponents="-1 -1 -1 -1" referencePositions="0.0 0.0 0.0 0.0" />
+  </component>
+  <component type="TextField" name="stockTextField">
+    <layoutConstraint insets="auto auto 47.521866% 19.024971%" referenceComponents="-1 -1 -1 -1" referencePositions="0.0 0.0 0.0 0.0" />
   </component>
   <component type="Button" text="Dar de alta" name="ButtonAlta" actionEvent="true">
-    <layoutConstraint insets="34.05467% auto auto 33.398247%" referenceComponents="-1 -1 -1 -1" referencePositions="0.0 0.0 0.0 0.0" />
+    <layoutConstraint insets="auto auto 32.653164% 31.034483%" referenceComponents="-1 -1 -1 -1" referencePositions="0.0 0.0 0.0 0.0" />
   </component>
   <component type="Button" text="Listar películas" name="ButtonListar" actionEvent="true">
-    <layoutConstraint insets="39.407745% auto auto 33.8851%" referenceComponents="-1 -1 -1 -1" referencePositions="0.0 0.0 0.0 0.0" />
+    <layoutConstraint insets="auto auto 26.239113% 31.034483%" referenceComponents="-1 -1 -1 -1" referencePositions="0.0 0.0 0.0 0.0" />
   </component>
 </component>
