@@ -155,7 +155,13 @@ public class FormPeliculas extends com.codename1.ui.Form {
                         }
                     });
                     row.addComponent(buttonBorrar);
-                    row.addComponent(new Button("Editar"));
+                    Button buttonEditar = new Button("Editar");
+                    buttonEditar.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent ev) {
+                            editarDatos(ev.getComponent(), titulo);
+                        }
+                    });
+                    row.addComponent(buttonEditar);
                     listPeliculas.addComponent(new Label(titulo));
                     listPeliculas.addComponent(new Label("Género: " + genero));
                     listPeliculas.addComponent(row);
@@ -212,6 +218,30 @@ public class FormPeliculas extends com.codename1.ui.Form {
         r.setPost(false);
         r.setHttpMethod("DELETE");
         r.addArgument("q", "@codename-one");
+        InfiniteProgress prog = new InfiniteProgress();
+        Dialog diag = prog.showInifiniteBlocking();
+        r.setDisposeOnCompletion(diag);
+        NetworkManager.getInstance().addToQueue(r);
+    }
+    
+    public void editarDatos(Component c, String id){
+        ConnectionRequest r = new ConnectionRequest(){
+            JSONObject json = new JSONObject();
+
+            protected void buildRequestBody(OutputStream os) throws IOException {
+                json.put("titulo", gui_tituloTextField.getText());
+                json.put("genero", gui_generoTextField.getText());
+                os.write(json.toString().getBytes("UTF-8"));
+            }
+            
+            @Override
+            protected void readResponse(InputStream input) throws IOException {
+            }
+        };
+        r.setUrl("http://localhost:8080/Videoclub/webresources/pelicula/put/"+id);
+        r.setContentType("application/json");
+        r.setPost(true);
+        r.setHttpMethod("PUT");
         InfiniteProgress prog = new InfiniteProgress();
         Dialog diag = prog.showInifiniteBlocking();
         r.setDisposeOnCompletion(diag);
