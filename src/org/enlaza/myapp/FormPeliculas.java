@@ -196,7 +196,7 @@ public class FormPeliculas extends com.codename1.ui.Form {
                     buttonEditar.addActionListener(new ActionListener() {
                         public void actionPerformed(ActionEvent ev) {
                             cargarDatos(ev.getComponent(), titulo);
-                            gui_ButtonAlta.setText("Editar");
+                            gui_ButtonAlta.setText("Guardar");
                             editar=true;
                         }
                     });

@@ -132,6 +132,12 @@ public class FormLogin extends com.codename1.ui.Form {
                 try{
                     usuario = data.get("usuario").toString();
                     password = data.get("password").toString();
+                    if(usuario.compareTo(gui_usuarioTextField.getText())==0 && password.compareTo(gui_passwordTextField.getText())==0){
+                        Form screen = new FormPeliculas();
+                        screen.show();
+                    }else{
+                        new Dialog().show("¡Uy!", "Datos incorrectos.", "OK", "Cancelar");
+                    }
                 }catch(NullPointerException npe){
                 }
             }
@@ -181,12 +187,6 @@ public class FormLogin extends com.codename1.ui.Form {
     public void onbuttonLoginActionEvent(com.codename1.ui.events.ActionEvent ev) {
         if(validar()){
             this.login(ev.getComponent(), gui_usuarioTextField.getText());
-            if(usuario.compareTo(gui_usuarioTextField.getText())==0 && password.compareTo(gui_passwordTextField.getText())==0){
-                Form screen = new FormPeliculas();
-                screen.show();
-            }else{
-                new Dialog().show("¡Uy!", "Datos incorrectos.", "OK", "Cancelar");
-            }
         }
     }
     public void onbuttonRegistrarseActionEvent(com.codename1.ui.events.ActionEvent ev) {
