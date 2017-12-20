@@ -5,6 +5,7 @@
  */
 package org.enlaza.myapp;
 
+import com.codename1.components.ImageViewer;
 import com.codename1.components.InfiniteProgress;
 import com.codename1.io.ConnectionRequest;
 import com.codename1.io.JSONParser;
@@ -13,12 +14,18 @@ import com.codename1.ui.Button;
 import com.codename1.ui.Component;
 import com.codename1.ui.Container;
 import com.codename1.ui.Dialog;
+import com.codename1.ui.FontImage;
+import com.codename1.ui.Form;
+import com.codename1.ui.Image;
 import com.codename1.ui.Label;
+import com.codename1.ui.Tabs;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BoxLayout;
 import static com.codename1.ui.layouts.BoxLayout.X_AXIS;
 import static com.codename1.ui.layouts.BoxLayout.Y_AXIS;
+import com.codename1.ui.plaf.Style;
+import com.codename1.ui.plaf.UIManager;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -45,6 +52,26 @@ public class FormPeliculas extends com.codename1.ui.Form {
         this.getToolbar().setBackCommand("", e -> new FormLogin().showBack());
         //Container where we'll be adding the films
         listPeliculas = new Container(new BoxLayout(Y_AXIS));
+        //Tabs with the locations
+        Tabs tabs = new Tabs();
+        Style s = UIManager.getInstance().getComponentStyle("Tab");
+        FontImage icon = FontImage.createMaterial(FontImage.MATERIAL_ADD_LOCATION, s);
+        Container escaleritas = new Container(new BoxLayout(Y_AXIS));
+        escaleritas.add(new Label("Las Palmas de Gran Canaria"));
+        escaleritas.add(new Label("Escalertias, 4"));
+        escaleritas.add(new Label("Horario: 9:00-21:00"));
+        Container pedroinfinito = new Container(new BoxLayout(Y_AXIS));
+        pedroinfinito.add(new Label("Las Palmas de Gran Canaria"));
+        pedroinfinito.add(new Label("Pedro Infinito, 6"));
+        pedroinfinito.add(new Label("Horario: 8:00-20:00"));
+        tabs.addTab("Escaleritas", icon, escaleritas);
+        tabs.addTab("Pedro Infinito", icon, pedroinfinito);
+        //Add components
+        this.addComponent(0, new Label("Dirección de nuestros locales"));
+        this.addComponent(1,tabs);
+        this.addComponent(2, new Label("Formulario Películas"));
+        
+        
     }
     
     public FormPeliculas(com.codename1.ui.util.Resources resourceObjectInstance) {
@@ -105,7 +132,7 @@ public class FormPeliculas extends com.codename1.ui.Form {
         setLayout(new com.codename1.ui.layouts.LayeredLayout());
         setInlineStylesTheme(resourceObjectInstance);
                 setInlineStylesTheme(resourceObjectInstance);
-        setTitle("Pel\u00EDculas");
+        setTitle("Videoclub");
         setName("FormPeliculas");
         addComponent(gui_Label);
         addComponent(gui_tituloTextField);

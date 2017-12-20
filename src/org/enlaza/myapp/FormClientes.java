@@ -1,21 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.enlaza.myapp;
 
-/**
- * GUI builder created Form
- *
- * @author AlumnoTarde
- */
-public class FormClientes extends com.codename1.ui.Form {
+import com.codename1.ui.Container;
+import com.codename1.ui.Form;
+import com.codename1.ui.Dialog;
+import com.codename1.ui.util.Resources;
 
-    public FormClientes() {
-        this(com.codename1.ui.util.Resources.getGlobalResources());
-    }
-    
+
+public class FormClientes extends Form  {
     public FormClientes(com.codename1.ui.util.Resources resourceObjectInstance) {
         initGuiBuilderComponents(resourceObjectInstance);
     }
@@ -31,6 +22,5 @@ public class FormClientes extends com.codename1.ui.Form {
         setTitle("Clientes");
         setName("FormClientes");
     }// </editor-fold>
-
 //-- DON'T EDIT ABOVE THIS LINE!!!
 }
