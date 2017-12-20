@@ -39,8 +39,11 @@ public class FormPeliculas extends com.codename1.ui.Form {
     
     public FormPeliculas() {
         this(com.codename1.ui.util.Resources.getGlobalResources());
+        //Change layout from Layered to Box
         this.setLayout(new BoxLayout(Y_AXIS));
+        //Add back button to go back to login
         this.getToolbar().setBackCommand("", e -> new FormLogin().showBack());
+        //Container where we'll be adding the films
         listPeliculas = new Container(new BoxLayout(Y_AXIS));
     }
     
@@ -102,7 +105,7 @@ public class FormPeliculas extends com.codename1.ui.Form {
         setLayout(new com.codename1.ui.layouts.LayeredLayout());
         setInlineStylesTheme(resourceObjectInstance);
                 setInlineStylesTheme(resourceObjectInstance);
-        setTitle("Videoclub");
+        setTitle("Pel\u00EDculas");
         setName("FormPeliculas");
         addComponent(gui_Label);
         addComponent(gui_tituloTextField);
