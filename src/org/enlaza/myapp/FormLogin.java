@@ -135,6 +135,8 @@ public class FormLogin extends com.codename1.ui.Form {
                     if(usuario.compareTo(gui_usuarioTextField.getText())==0 && password.compareTo(gui_passwordTextField.getText())==0){
                         Form screen = new FormPeliculas();
                         screen.show();
+                    }else{
+                        new Dialog().show("¡Uy!", "Datos incorrectos.", "OK", "Cancelar");
                     }
                 //Handle exception when user given does not exist
                 }catch(NullPointerException npe){
