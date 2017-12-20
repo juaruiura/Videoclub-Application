@@ -40,6 +40,7 @@ public class FormPeliculas extends com.codename1.ui.Form {
     public FormPeliculas() {
         this(com.codename1.ui.util.Resources.getGlobalResources());
         this.setLayout(new BoxLayout(Y_AXIS));
+        this.getToolbar().setBackCommand("", e -> new FormLogin().showBack());
         listPeliculas = new Container(new BoxLayout(Y_AXIS));
     }
     
@@ -162,6 +163,7 @@ public class FormPeliculas extends com.codename1.ui.Form {
 
 //-- DON'T EDIT ABOVE THIS LINE!!!
     
+    //Method used to load the data from the film table in the database and print it on the app
     public void mostrarDatos(Component c){
         ConnectionRequest r = new ConnectionRequest(){
             Map<String, Object> data;
@@ -229,6 +231,7 @@ public class FormPeliculas extends com.codename1.ui.Form {
         NetworkManager.getInstance().addToQueue(r);
     }
     
+    //Method to create a new film in the database
     public void enviarDatos(){
         ConnectionRequest r = new ConnectionRequest(){
             JSONObject json = new JSONObject();
@@ -257,6 +260,7 @@ public class FormPeliculas extends com.codename1.ui.Form {
         NetworkManager.getInstance().addToQueue(r);
     }
     
+    //Method used to delete a film from the database
     public void borrarDatos(Component c, String id){
         ConnectionRequest r = new ConnectionRequest(){
         };
@@ -270,6 +274,7 @@ public class FormPeliculas extends com.codename1.ui.Form {
         NetworkManager.getInstance().addToQueue(r);
     }
     
+    //Method used to load the data of a film into the inputs and sets the create button to edit
     public void cargarDatos(Component c, String id){
         ConnectionRequest r = new ConnectionRequest(){
             Hashtable data;
@@ -297,6 +302,7 @@ public class FormPeliculas extends com.codename1.ui.Form {
         NetworkManager.getInstance().addToQueue(r);
     }
     
+    //Method used to edit data from a film and switch the create button to normal afterwards
     public void editarDatos(Component c){
         ConnectionRequest r = new ConnectionRequest(){
             JSONObject json = new JSONObject();
@@ -324,6 +330,7 @@ public class FormPeliculas extends com.codename1.ui.Form {
         NetworkManager.getInstance().addToQueue(r);
     }
     
+    //Method used to validate that the inputs aren't empty and the duration and stock inputs are numeric
     private boolean validar(){
         if(gui_tituloTextField.getText().compareTo("")==0){
             return false;
@@ -343,6 +350,7 @@ public class FormPeliculas extends com.codename1.ui.Form {
         return true;
     }
     
+    //Method to check if the given str is a number
     private boolean isNumeric(String str){
         try {  
           double d = Double.parseDouble(str);  
@@ -353,6 +361,7 @@ public class FormPeliculas extends com.codename1.ui.Form {
         return true;  
     }
     
+    //Method to clean the input fields
     private void cleanTextFields(){
         gui_tituloTextField.clear();
         gui_generoTextField.clear();
@@ -361,6 +370,7 @@ public class FormPeliculas extends com.codename1.ui.Form {
         gui_stockTextField.clear();
     }
     
+    //Listeners for the buttons
     public void onButtonListarActionEvent(com.codename1.ui.events.ActionEvent ev) {
         mostrarDatos(ev.getComponent());
     }

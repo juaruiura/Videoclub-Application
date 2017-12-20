@@ -31,11 +31,13 @@ import org.json.simple.JSONObject;
  * @author AlumnoTarde
  */
 public class FormLogin extends com.codename1.ui.Form {
+    //Variables used to store user data to compare with input data
     String usuario = "";
     String password = "";
 
     public FormLogin() {
         this(com.codename1.ui.util.Resources.getGlobalResources());
+        //Change layout from Layered to Box
         this.setLayout(new BoxLayout(Y_AXIS));
     }
     
@@ -124,23 +126,29 @@ public class FormLogin extends com.codename1.ui.Form {
     }// </editor-fold>
 
 //-- DON'T EDIT ABOVE THIS LINE!!!
+    //Get user and password from database for the given user if it exists
     public void login(Component c, String id){
         ConnectionRequest r = new ConnectionRequest(){
+            //Used to store the data produced by the API
             Hashtable data;
             @Override
             protected void postResponse() {
                 try{
+                    //Store the data into local variables
                     usuario = data.get("usuario").toString();
                     password = data.get("password").toString();
+                    //if the input data is correct, go to the film form
                     if(usuario.compareTo(gui_usuarioTextField.getText())==0 && password.compareTo(gui_passwordTextField.getText())==0){
                         Form screen = new FormPeliculas();
                         screen.show();
                     }
+                //Handle exception when user given does not exist
                 }catch(NullPointerException npe){
                     new Dialog().show("¡Uy!", "Datos incorrectos.", "OK", "Cancelar");
                 }
             }
 
+            //Read data from the API
             @Override
             protected void readResponse(InputStream input) throws IOException {
                 JSONParser p = new JSONParser();
@@ -154,14 +162,19 @@ public class FormLogin extends com.codename1.ui.Form {
         NetworkManager.getInstance().addToQueue(r);
     }
     
-    public void enviarDatos(Component c){
+    //Create a new user in the database
+    public void registrar(Component c){
         ConnectionRequest r = new ConnectionRequest(){
+            //Object that will be sent to the service
             JSONObject json = new JSONObject();
 
             protected void buildRequestBody(OutputStream os) throws IOException {
+                //Building the json
                 json.put("usuario", gui_usuarioTextField.getText());
                 json.put("password", gui_passwordTextField.getText());
+                //Sending json to API
                 os.write(json.toString().getBytes("UTF-8"));
+                new Dialog().show("", "Te has registrado con éxito.", "OK", "Cancelar");
             }
             
             @Override
@@ -175,6 +188,7 @@ public class FormLogin extends com.codename1.ui.Form {
         NetworkManager.getInstance().addToQueue(r);
     }
     
+    //Method to check if the inputs are empty. In case they are, return false, otherwise, returns true
     private boolean validar(){
         if(gui_usuarioTextField.getText().compareTo("")==0 || gui_passwordTextField.getText().compareTo("")==0){
             new Dialog().show("¡Uy!", "Has dejado alguno de los campos vacío.", "OK", "Cancelar");
@@ -183,6 +197,7 @@ public class FormLogin extends com.codename1.ui.Form {
         return true;
     }
     
+    //Listeners for the buttons that will trigger the service if the validation passes
     public void onbuttonLoginActionEvent(com.codename1.ui.events.ActionEvent ev) {
         if(validar()){
             this.login(ev.getComponent(), gui_usuarioTextField.getText());
@@ -190,8 +205,7 @@ public class FormLogin extends com.codename1.ui.Form {
     }
     public void onbuttonRegistrarseActionEvent(com.codename1.ui.events.ActionEvent ev) {
         if(validar()){
-            enviarDatos(ev.getComponent());
-            new Dialog().show("", "Te has registrado con éxito.", "OK", "Cancelar");
+            registrar(ev.getComponent());
         }
     }
 
