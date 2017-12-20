@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component type="Form" layout="LayeredLayout" layeredLayoutPreferredWidthMM="0.0" layeredLayoutPreferredHeightMM="0.0"  autolayout="true" title="Login" name="FormLogin">
+  <component type="Label" text="Usuario:" name="Label">
+    <layoutConstraint insets="6.4139943% auto auto 31.866825%" referenceComponents="-1 -1 -1 -1" referencePositions="0.0 0.0 0.0 0.0" />
+  </component>
+  <component type="TextField" name="usuarioTextField">
+    <layoutConstraint insets="1.5873013mm auto auto 24.613556%" referenceComponents="0 -1 -1 -1" referencePositions="1.0 0.0 0.0 0.0" />
+  </component>
+  <component type="Label" text="Contraseña:" name="Label_1">
+    <layoutConstraint insets="17.492712% 0.0mm auto auto" referenceComponents="-1 0 -1 -1" referencePositions="0.0 0.0 0.0 0.0" />
+  </component>
+  <component type="TextField" name="passwordTextField">
+    <layoutConstraint insets="25.655977% auto auto 23.305588%" referenceComponents="-1 -1 -1 -1" referencePositions="0.0 0.0 0.0 0.0" />
+  </component>
+  <component type="Button" text="Log in" name="buttonLogin" actionEvent="true">
+    <layoutConstraint insets="33.381924% auto auto 1.5872955mm" referenceComponents="-1 -1 -1 0 " referencePositions="0.0 0.0 0.0 0.0" />
+  </component>
+</component>
